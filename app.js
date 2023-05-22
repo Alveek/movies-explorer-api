@@ -3,7 +3,6 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const limiter = require('./utils/limiter');
-const cors = require('./middlewares/cors');
 const auth = require('./middlewares/auth');
 const centralizedErrorController = require('./middlewares/centralizedErrorController');
 const authRouter = require('./routes/auth');
@@ -15,7 +14,6 @@ const { NotFound } = require('./errors');
 const { PORT = 3000 } = process.env;
 const app = express();
 
-// mongoose.connect(CONNECT);
 connectDB();
 
 app.use(express.json());
@@ -24,10 +22,9 @@ app.use(helmet());
 app.use(cookieParser());
 
 app.use(requestLogger);
-app.use(cors);
 
 app.use(authRouter);
-// app.use(limiter);
+app.use(limiter);
 app.use(auth);
 app.use(router);
 

@@ -19,11 +19,7 @@ const createMovie = (req, res, next) => {
     })
     .catch((error) => {
       if (error.name === 'ValidationError') {
-        next(
-          new customError.BadRequest(
-            'Переданы некорректные данные при создании карточки.'
-          )
-        );
+        next(new customError.BadRequest('Переданы некорректные данные.'));
       } else {
         next(error);
       }
@@ -36,9 +32,9 @@ const deleteMovie = (req, res, next) => {
   Movie.deleteOne({ _id: movieId })
     .then((movie) => {
       if (movie.deletedCount === 0) {
-        throw new customError.NotFound('Карточка с указанным _id не найдена.');
+        throw new customError.NotFound('Фильм с указанным _id не найден.');
       }
-      return res.send({ message: 'Карточка удалена' });
+      return res.send({ message: 'Фильм удален' });
     })
     .catch(next);
 };

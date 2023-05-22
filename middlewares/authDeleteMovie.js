@@ -6,10 +6,10 @@ module.exports = (req, res, next) => {
     .then((movie) => {
       // console.log(movie.owner);
       if (!movie) {
-        next(new customError.NotFound('Карточки с указанным id не существует'));
+        next(new customError.NotFound('Фильма с указанным id не существует'));
       } else if (movie.owner.toHexString() !== req.user._id) {
         next(
-          new customError.Forbidden('У вас нет прав на удаление чужой карточки')
+          new customError.Forbidden('У вас нет прав на удаление чужого фильма')
         );
       }
       return next();

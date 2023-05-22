@@ -47,34 +47,34 @@ const createMovieValidation = {
   body: Joi.object({
     country: Joi.string()
       .messages({
-        'any.required': 'Название карточки не должно быть пустым',
+        'any.required': 'Поле не должно быть пустым',
       })
       .required(),
     director: Joi.string()
       .messages({
-        'any.required': 'Название карточки не должно быть пустым',
+        'any.required': 'Поле не должно быть пустым',
       })
       .required(),
     duration: Joi.number()
       .messages({
-        'any.required': 'Название карточки не должно быть пустым',
+        'any.required': 'Поле не должно быть пустым',
       })
       .required(),
     year: Joi.string()
       .messages({
-        'any.required': 'Название карточки не должно быть пустым',
+        'any.required': 'Поле не должно быть пустым',
       })
       .required(),
     description: Joi.string()
       .messages({
-        'any.required': 'Название карточки не должно быть пустым',
+        'any.required': 'Поле не должно быть пустым',
       })
       .required(),
     image: Joi.string()
       .regex(urlRegEx)
       .messages({
         'string.dataUri': 'Невалидная ссылка',
-        'any.required': 'Название карточки не должно быть пустым',
+        'any.required': 'Поле не должно быть пустым',
       })
       .required(),
     trailerLink: Joi.string()
@@ -91,17 +91,17 @@ const createMovieValidation = {
       .required(),
     nameRU: Joi.string()
       .messages({
-        'any.required': 'Название карточки не должно быть пустым',
+        'any.required': 'Поле не должно быть пустым',
       })
       .required(),
     nameEN: Joi.string()
       .messages({
-        'any.required': 'Название карточки не должно быть пустым',
+        'any.required': 'Поле не должно быть пустым',
       })
       .required(),
     movieId: Joi.number()
       .messages({
-        'any.required': 'Название карточки не должно быть пустым',
+        'any.required': 'Поле не должно быть пустым',
       })
       .required(),
   }),
