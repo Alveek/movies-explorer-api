@@ -30,7 +30,7 @@ const signupValidation = {
   }),
 };
 
-const editProfileValidation = {
+const updateProfileValidation = {
   body: Joi.object({
     name: Joi.string().min(2).max(30).messages({
       'string.min': 'Поле "имя" не должно быть меньше 2 символов',
@@ -109,14 +109,14 @@ const createMovieValidation = {
 
 const deleteMovieValidation = {
   params: Joi.object({
-    movieId: Joi.string().hex().length(24).messages({
+    _id: Joi.string().hex().length(24).messages({
       'string.hex': 'Некорректный id',
     }),
   }),
 };
 
 module.exports = {
-  editProfileValidation,
+  updateProfileValidation,
   signinValidation,
   signupValidation,
   createMovieValidation,

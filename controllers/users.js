@@ -88,7 +88,7 @@ const getMe = (req, res, next) => {
     });
 };
 
-const editProfile = (req, res, next) => {
+const updateProfile = (req, res, next) => {
   const owner = req.user._id;
   const { name, email } = req.body;
 
@@ -99,7 +99,13 @@ const editProfile = (req, res, next) => {
   )
     .then((user) => checkUser(user, res))
     .catch((error) => {
-      if (error.name === 'ValidationError') {
+      if (error.code === 11000) {
+        next(
+          new customError.Conflict(
+            'Пользователь с такой почтой уже зарегистрирвован'
+          )
+        );
+      } else if (error.name === 'ValidationError') {
         next(
           new customError.BadRequest(
             'Некорректные данные при создании нового пользователя'
@@ -114,6 +120,6 @@ const editProfile = (req, res, next) => {
 module.exports = {
   login,
   createUser,
-  editProfile,
+  updateProfile,
   getMe,
 };

@@ -17,7 +17,7 @@ moviesRouter.get('/', getMovies);
 moviesRouter.post('/', celebrate(createMovieValidation), createMovie);
 
 moviesRouter.delete(
-  '/:movieId',
+  '/:_id',
   celebrate(deleteMovieValidation),
   authDeleteMovie,
   deleteMovie

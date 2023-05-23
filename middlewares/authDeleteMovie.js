@@ -2,7 +2,7 @@ const Movie = require('../models/movie');
 const customError = require('../errors');
 
 module.exports = (req, res, next) => {
-  Movie.findById({ _id: req.params.movieId })
+  Movie.findById({ _id: req.params._id })
     .then((movie) => {
       // console.log(movie.owner);
       if (!movie) {

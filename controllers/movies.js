@@ -27,9 +27,7 @@ const createMovie = (req, res, next) => {
 };
 
 const deleteMovie = (req, res, next) => {
-  const { movieId } = req.params;
-
-  Movie.deleteOne({ _id: movieId })
+  Movie.deleteOne({ _id: req.params._id })
     .then((movie) => {
       if (movie.deletedCount === 0) {
         throw new customError.NotFound('Фильм с указанным _id не найден.');
