@@ -2,8 +2,7 @@ const Movie = require('../models/movie');
 const customError = require('../errors');
 
 const getMovies = (req, res, next) => {
-  Movie.find({})
-    .populate(['owner'])
+  Movie.find({ owner: req.user._id })
     .then((movies) => {
       res.send(movies);
     })

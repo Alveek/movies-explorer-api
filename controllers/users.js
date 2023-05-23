@@ -31,14 +31,14 @@ const createUser = (req, res, next) => {
           if (error.code === 11000) {
             next(
               new customError.Conflict(
-                'Пользователь с такой почтой уже зарегистрирвован'
-              )
+                'Пользователь с такой почтой уже зарегистрирвован',
+              ),
             );
           } else if (error.name === 'ValidationError') {
             next(
               new customError.BadRequest(
-                'Некорректные данные при создании нового пользователя'
-              )
+                'Некорректные данные при создании нового пользователя',
+              ),
             );
           } else {
             next(error);
@@ -60,7 +60,7 @@ const login = (req, res, next) => {
       return bcrypt.compare(password, user.password).then((matched) => {
         if (!matched) {
           return next(
-            new customError.Unauthorized('Неверные почта или пароль')
+            new customError.Unauthorized('Неверные почта или пароль'),
           );
         }
         const token = jwt.sign({ _id: user._id }, config.jwtSecret, {
@@ -79,8 +79,8 @@ const getMe = (req, res, next) => {
       if (error.name === 'ValidationError') {
         next(
           new customError.BadRequest(
-            'Некорректные данные при создании нового пользователя'
-          )
+            'Некорректные данные при создании нового пользователя',
+          ),
         );
       } else {
         next(error);
@@ -95,21 +95,21 @@ const updateProfile = (req, res, next) => {
   User.findByIdAndUpdate(
     owner,
     { name, email },
-    { new: true, runValidators: true }
+    { new: true, runValidators: true },
   )
     .then((user) => checkUser(user, res))
     .catch((error) => {
       if (error.code === 11000) {
         next(
           new customError.Conflict(
-            'Пользователь с такой почтой уже зарегистрирвован'
-          )
+            'Пользователь с такой почтой уже зарегистрирвован',
+          ),
         );
       } else if (error.name === 'ValidationError') {
         next(
           new customError.BadRequest(
-            'Некорректные данные при создании нового пользователя'
-          )
+            'Некорректные данные при создании нового пользователя',
+          ),
         );
       } else {
         next(error);

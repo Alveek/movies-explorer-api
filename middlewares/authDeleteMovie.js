@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
         next(new customError.NotFound('Фильма с указанным id не существует'));
       } else if (movie.owner.toHexString() !== req.user._id) {
         next(
-          new customError.Forbidden('У вас нет прав на удаление чужого фильма')
+          new customError.Forbidden('У вас нет прав на удаление чужого фильма'),
         );
       }
       return next();

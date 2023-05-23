@@ -20,7 +20,7 @@ moviesRouter.delete(
   '/:_id',
   celebrate(deleteMovieValidation),
   authDeleteMovie,
-  deleteMovie
+  deleteMovie,
 );
 
 module.exports = moviesRouter;

@@ -3,9 +3,8 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const limiter = require('./utils/limiter');
-const auth = require('./middlewares/auth');
 const centralizedErrorController = require('./middlewares/centralizedErrorController');
-const authRouter = require('./routes/auth');
+
 const router = require('./routes');
 const connectDB = require('./db');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -23,9 +22,7 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 
-app.use(authRouter);
 app.use(limiter);
-app.use(auth);
 app.use(router);
 
 app.use((req, res, next) => {

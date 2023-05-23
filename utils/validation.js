@@ -32,12 +32,13 @@ const signupValidation = {
 
 const updateProfileValidation = {
   body: Joi.object({
-    name: Joi.string().min(2).max(30).messages({
-      'string.min': 'Поле "имя" не должно быть меньше 2 символов',
-      'string.max': 'Поле "имя" не должно быть больше 30 символов',
-      'any.required': 'Поле "имя" не должно быть пустым',
-    }),
-    email: Joi.string().email().messages({
+    name: Joi.string().min(2).max(30).required()
+      .messages({
+        'string.min': 'Поле "имя" не должно быть меньше 2 символов',
+        'string.max': 'Поле "имя" не должно быть больше 30 символов',
+        'any.required': 'Поле "имя" не должно быть пустым',
+      }),
+    email: Joi.string().email().required().messages({
       'string.email': 'Введена некорректная почта',
     }),
   }),
