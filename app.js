@@ -1,6 +1,5 @@
 const express = require('express');
 const helmet = require('helmet');
-const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const limiter = require('./utils/limiter');
 const centralizedErrorController = require('./middlewares/centralizedErrorController');
@@ -18,7 +17,6 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
-app.use(cookieParser());
 
 app.use(requestLogger);
 
