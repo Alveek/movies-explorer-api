@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
+const cors = require('./middlewares/cors');
 const limiter = require('./utils/limiter');
 const centralizedErrorController = require('./middlewares/centralizedErrorController');
 
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 
 app.use(requestLogger);
+app.use(cors);
 
 app.use(limiter);
 app.use(router);
