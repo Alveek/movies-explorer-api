@@ -31,7 +31,7 @@ const createUser = (req, res, next) => {
           if (error.code === 11000) {
             next(
               new customError.Conflict(
-                'Пользователь с такой почтой уже зарегистрирвован',
+                'Пользователь с такой почтой уже зарегистрирован',
               ),
             );
           } else if (error.name === 'ValidationError') {
@@ -102,7 +102,7 @@ const updateProfile = (req, res, next) => {
       if (error.code === 11000) {
         next(
           new customError.Conflict(
-            'Пользователь с такой почтой уже зарегистрирвован',
+            'Пользователь с таким email уже зарегистрирован',
           ),
         );
       } else if (error.name === 'ValidationError') {
